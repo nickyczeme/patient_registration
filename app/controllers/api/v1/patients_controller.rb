@@ -6,6 +6,7 @@ module Api
         patient = Patient.new(patient_params)
 
         if patient.save
+          PatientMailer.with(patient: patient).confirmation_email.deliver_later
           render json: patient, status: :created
         else
           render json: { errors: patient.errors.full_messages }, status: :unprocessable_entity
