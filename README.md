@@ -46,7 +46,7 @@ docker-compose run web bundle exec rails test
 ```
 
 ## Functionalities Details
-1. API design
+### 1. API design
 - Built with Rails RESTful architecture
 - Endpoint: ```POST /api/v1/patients```
 - Collects the following information:
@@ -55,25 +55,25 @@ docker-compose run web bundle exec rails test
   - Phone number
   - Photo of a document (attachment)
 
-2. Data validation
+### 2. Data validation
 - Ensures the presence of name, email and phone number.
 - Validates the email formal.
   Invalid requests return 422 with the error messages.
 - Future implementation: Include phone number validation based on country codes.
 
-3. Database
+### 3. Database
 - SQLite was used because of installation challenges with MySQL.
--Patient Table Schema:
+- Patient Table Schema:
   - name (string)
   - email (string)
   - phone (string)
   - document_photo (Active Storage)
 - Note: for production, MySQL would be implemented.
 
-4. Asynchronous Email
+### 4. Asynchronous Email
 - Confirmation emails are sent using Action Mailer and Active Job.
 - Letter Opener is configured in development to preview emails in the browser.
-To Simulate Email Sending:
+To simulate email sending:
   1. Open the Rails console:
      ```bash
      docker-compose run web rails console
@@ -87,9 +87,9 @@ To Simulate Email Sending:
      open tmp/letter_opener/<email_file_name>.html
      ```
 
-5. Docker
+### 5. Docker
 The project is containerized using Docker Compose
 
-6. SMS Notification
+### 6. SMS Notification
 A placeholder service (SmsNotificationService) is implemented for future SMS notifications.
 
