@@ -7,6 +7,7 @@ module Api
 
         if patient.save
           PatientMailer.with(patient: patient).confirmation_email.deliver_later
+          SmsNotificationService.send_sms(patient.phone, "Hello #{patient.name}! Thank you for registering.")
           render json: patient, status: :created
         else
           render json: { errors: patient.errors.full_messages }, status: :unprocessable_entity
